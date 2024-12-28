@@ -1,0 +1,68 @@
+<div class="container" id="form0">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Login</h2>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form">
+            <!-- <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="loginFormModel.email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="loginFormModel.password" required>
+            </div> -->
+              <!-- Email Field -->
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                [(ngModel)]="loginFormModel.email"
+                #email="ngModel"
+                required
+                email
+              />
+              <!-- Email Validation Errors -->
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                [(ngModel)]="loginFormModel.password"
+                #password="ngModel"
+                required
+                minlength="6"
+              />
+              <!-- Password Validation Errors -->
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                <div *ngIf="password.errors?.['required']">Password is required.</div>
+                <div *ngIf="password.errors?.['minlength']">
+                  Password must be at least 6 characters long.
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

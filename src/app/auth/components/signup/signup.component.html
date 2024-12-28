@@ -1,0 +1,91 @@
+<div class="container" id="form8">
+  <br>
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Sign Up</h2>
+          <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" class="signup-form">
+            <!-- <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="signupFormModel.name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="signupFormModel.email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="signupFormModel.password" required>
+            </div> -->
+              <!-- Name Field -->
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="signupFormModel.name"
+                  #name="ngModel"
+                  required
+                  minlength="3"
+                />
+                <!-- Name Validation Errors -->
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                  <div *ngIf="name.errors?.['required']">Name is required.</div>
+                  <div *ngIf="name.errors?.['minlength']">
+                    Name must be at least 3 characters long.
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Email Field -->
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  [(ngModel)]="signupFormModel.email"
+                  #email="ngModel"
+                  required
+                  email
+                />
+                <!-- Email Validation Errors -->
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                  <div *ngIf="email.errors?.['required']">Email is required.</div>
+                  <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+                </div>
+              </div>
+  
+              <!-- Password Field -->
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  [(ngModel)]="signupFormModel.password"
+                  #password="ngModel"
+                  required
+                  minlength="6"
+                />
+                <!-- Password Validation Errors -->
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                  <div *ngIf="password.errors?.['required']">Password is required.</div>
+                  <div *ngIf="password.errors?.['minlength']">
+                    Password must be at least 6 characters long.
+                  </div>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="signupForm.invalid">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
